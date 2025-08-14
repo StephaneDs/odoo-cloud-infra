@@ -1,0 +1,14 @@
+{
+    "servers": {
+       "1": {
+            "Name": "OdooDB",
+            "Group": "Odoo",
+            "Host": "odoo-db",
+            "Port": 5432,
+            "maintenance_db": "postgres",
+            "Username": "odoo",
+            "SSLMode": "prefer",
+            "Comment": "Auto connect to Odoo database"
+        }
+    }
+ }   
