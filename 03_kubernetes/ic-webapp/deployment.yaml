@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ic-webapp-deploy
+    env: prod
+  name: ic-webapp-deploy
+  namespace: ic-group
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ic-webapp-deploy
+      env: prod
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ic-webapp-deploy
+        env: prod
+    spec:
+      containers:
+      - image: ghcr.io/stephaneds/ic-webapp:1.0
+        name: ic-webapp
+        ports:
+          - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: ic-webapp-cm
+         

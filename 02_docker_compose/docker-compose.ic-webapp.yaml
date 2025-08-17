@@ -13,4 +13,4 @@ services:
 networks:
   ic-network:
     driver: bridge
-    name: ic-network
+    name: ${IC_NETWORK:-ic-network}

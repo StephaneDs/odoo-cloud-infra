@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ic-webapp-cm
+  namespace: ic-group
+  labels:
+    app: ic-webapp
+data:
+  ODOO_URL: "https://www.odoo.com/"
+  PGADMIN_URL: "https://www.pgadmin.org/"
