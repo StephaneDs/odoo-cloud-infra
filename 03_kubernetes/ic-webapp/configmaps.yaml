@@ -6,5 +6,5 @@ metadata:
   labels:
     app: ic-webapp
 data:
-  ODOO_URL: "https://www.odoo.com/"
-  PGADMIN_URL: "https://www.pgadmin.org/"
+  ODOO_URL: "http://localhost:8069/"
+  PGADMIN_URL: "http://localhost:5050/"

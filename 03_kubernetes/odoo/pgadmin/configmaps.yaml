@@ -6,7 +6,7 @@ data:
             "1": {
                 "Name": "OdooDB",
                 "Group": "Odoo",
-                "Host": "odoo-db",
+                "Host": "odoo-db-svc",
                 "Port": 5432,
                 "MaintenanceDB": "postgres",
                 "Username": "odoo",

@@ -1,0 +1,51 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: odoo-web
+    env: prod
+  name: odoo-web
+  namespace: ic-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: odoo-web
+      env: prod
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: odoo-web
+        env: prod
+    spec:
+      containers:
+      - image: odoo:17.0
+        name: odoo-web
+        ports:
+        - containerPort: 8069
+        envFrom:
+        - configMapRef:
+            name: odoo-web-cm
+        - secretRef:
+            name: odoo-web-secret
+        volumeMounts:
+        - name: odoo-web-data
+          mountPath: /var/lib/odoo
+        - name: odoo-web-config 
+          mountPath: /etc/odoo
+        - name: odoo-web-addons
+          mountPath: /mnt/extra-addons
+      volumes:
+      - name: odoo-web-data
+        persistentVolumeClaim:
+          claimName: odoo-web-data
+      - name: odoo-web-config
+        hostPath:
+          path: /etc/odoo
+          type: DirectoryOrCreate
+      - name: odoo-web-addons
+        hostPath:
+          path: /mnt/extra-addons
+          type: DirectoryOrCreate

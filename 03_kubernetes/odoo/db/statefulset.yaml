@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: odoo-db
+    env: prod
+  name: odoo-db
+  namespace: ic-group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: odoo-db
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: odoo-db
+        env: prod
+    spec:
+      containers:
+      - image: postgres:15
+        name: postgres
+        envFrom:
+        - configMapRef:
+            name: odoo-db-cm
+        - secretRef:
+            name: odoo-db-secret
+        ports:
+          - containerPort: 5432
+        volumeMounts:
+        - name: odoo-db-data
+          mountPath: /var/lib/postgresql/data/pgdata
+  volumeClaimTemplates:
+  - metadata:
+      name: odoo-db-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: local-path
