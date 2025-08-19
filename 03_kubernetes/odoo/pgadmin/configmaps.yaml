@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+  servers.json: |-
+    {
+        "Servers": {
+            "1": {
+                "Name": "OdooDB",
+                "Group": "Odoo",
+                "Host": "odoo-db",
+                "Port": 5432,
+                "MaintenanceDB": "postgres",
+                "Username": "odoo",
+                "SSLMode": "prefer",
+                "Comment": "Connexion auto à la base PostgreSQL Odoo"
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: pgadmin-servers-json
+  namespace: ic-group
+  labels:
+    env: prod

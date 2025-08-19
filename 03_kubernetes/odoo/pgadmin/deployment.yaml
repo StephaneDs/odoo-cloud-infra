@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pgadmin
+    env: prod
+  name: pgadmin
+  namespace: ic-group
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pgadmin
+      env: prod
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pgadmin
+        env: prod
+    spec:
+      containers:
+      - image: dpage/pgadmin4
+        name: pgadmin4
+        resources: {}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /pgadmin4/servers.json
+          name: servers-json
+          subPath: servers.json
+        envFrom:
+        - configMapRef:
+            name: pgadmin-cm
+        - secretRef:
+            name: pgadmin-secret
+      volumes:
+      - name: servers-json
+        configMap:
+          name: pgadmin-servers-json        
+status: {}
