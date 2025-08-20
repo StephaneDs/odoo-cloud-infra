@@ -1,0 +1,5 @@
+resources:
+  - ic-group.yaml
+  - ic-webapp/
+  - odoo/
+  
