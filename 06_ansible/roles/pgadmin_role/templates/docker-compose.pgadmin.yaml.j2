@@ -1,0 +1,26 @@
+services:
+    pgadmin4:
+        ports:
+            - {{ server_port_pgadmin }}:80 
+        volumes:
+            - /tmp/servers.json:/pgadmin4/servers.json
+            - pgadmin-data:/var/lib/pgadmin
+            
+        environment:
+            - PGADMIN_DEFAULT_EMAIL={{ pgadmin_default_email }}
+            - PGADMIN_DEFAULT_PASSWORD={{ pgadmin_default_password }}
+        image: {{ pgadmin_image }}
+        container_name: {{ container_name }}
+        networks:
+            - {{ network_name_ic_webapp }}
+
+networks:
+    {{ network_name_ic_webapp }}:
+        external: true
+        name: {{ network_name_ic_webapp }}   
+        
+
+volumes: 
+    pgadmin-data:
+        name: {{ pgadmin_data_volume }}
+        driver: local

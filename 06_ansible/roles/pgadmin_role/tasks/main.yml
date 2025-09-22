@@ -1,0 +1,20 @@
+#SPDX-License-Identifier: MIT-0
+
+- name: ensure pgadmin directory exists
+  file:
+    path: /opt/odoo-cloud-infra/pgadmin
+    state: directory
+    mode: '0755'
+    owner: vagrant
+    group: vagrant
+
+- name: generate pgadmin docker-compose file
+  template:
+    src: docker-compose.pgadmin.yaml.j2
+    dest: /opt/odoo-cloud-infra/pgadmin/docker-compose.pgadmin.yaml
+
+- name: start compose file for pgadmin
+  command: docker compose -f /opt/odoo-cloud-infra/pgadmin/docker-compose.pgadmin.yaml up -d
+  args:
+    chdir: /opt/odoo-cloud-infra/pgadmin
+    

@@ -1,0 +1,23 @@
+- name: ensure icwebapp directory exists
+  file:
+    path: /opt/odoo-cloud-infra/icwebapp
+    state: directory
+    mode: '0755'
+    owner: vagrant
+    group: vagrant
+
+- name: generate icwebapp docker-compose file
+  template:
+    src: docker-compose.icwebapp.yaml.j2
+    dest: /opt/odoo-cloud-infra/icwebapp/docker-compose.icwebapp.yaml
+
+# - name: Ensure Docker compose network is created with correct labels
+#   command: docker compose -f /opt/odoo-cloud-infra/icwebapp/docker-compose.icwebapp.yaml up --no-start
+#   args:
+#     chdir: /opt/odoo-cloud-infra/icwebapp
+   
+- name: start compose file for icwebapp
+  command: docker compose -f docker-compose.icwebapp.yaml up -d
+  args:
+    chdir: /opt/odoo-cloud-infra/icwebapp
+    

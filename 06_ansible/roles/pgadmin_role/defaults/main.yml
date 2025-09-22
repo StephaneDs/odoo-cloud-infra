@@ -1,0 +1,9 @@
+# defaults file for pgadmin_role
+server_port_pgadmin: 5050
+pgadmin_data_volume: pgadmin-data
+pgadmin_default_email: user@domain.com
+pgadmin_default_password: SuperSecret
+pgadmin_image: dpage/pgadmin4
+container_name: pgadmin4
+network: ic-webapp-network
+

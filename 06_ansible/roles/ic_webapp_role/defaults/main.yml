@@ -1,0 +1,11 @@
+service_name: ic-webapp
+#image_name: stephaneds/ic-webapp:1.0
+image_name: ghcr.io/stephaneds/ic-webapp:1.0
+#image_name: belka75/ic-webapp:1.0
+odoo_url: https://www.odoo.com/
+pgadmin_url: https://www.pgadmin.org/
+server_port_ic_webapp: 8081
+network: "ic-webapp-network"
+service_name_ic_webapp: "{{ service_name }}"
+image_name_ic_webapp: "{{ image_name }}"
+network_name_ic_webapp: "{{ network }}"

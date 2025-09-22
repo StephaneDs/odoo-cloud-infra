@@ -1,0 +1,6 @@
+all:
+  children:
+    odoo-cloud-infra:
+      hosts:
+        vm1:
+          

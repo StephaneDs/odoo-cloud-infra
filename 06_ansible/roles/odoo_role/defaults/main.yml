@@ -1,0 +1,27 @@
+# defaults file for odoo_role
+odoo_image: odoo:17.0
+odoo_container_name: odoo-web
+odoo_service_port: 8069
+
+odoo_web_volume: odoo-web-data
+odoo_web_data: /var/lib/odoo
+
+odoo_config_volume: odoo-config-data
+odoo_web_conf: /etc/odoo
+
+odoo_addons_volume: odoo-addons-data
+odoo_web_addon: /mnt/extra-addons 
+
+
+
+odoo_db_image: postgres:15
+odoo_db_container_name: odoo-db
+odoo_db_name: postgres
+odoo_db_password: myodoo
+odoo_db_user: odoo
+
+odoo_db_volume: odoo-db-data
+odoo_db_pgdata: /var/lib/postgresql/data/pgdata
+
+
+network: ic-network 

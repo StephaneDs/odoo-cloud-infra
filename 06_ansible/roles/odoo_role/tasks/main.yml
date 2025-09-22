@@ -1,0 +1,20 @@
+#SPDX-License-Identifier: MIT-0
+- name: ensure odoo directory exists
+  file:
+    path: /opt/odoo-cloud-infra/odoo
+    state: directory
+    mode: '0755'
+    owner: vagrant
+    group: vagrant
+
+
+- name: generate odoo docker-compose file
+  template:
+    src: docker-compose.odoo.yaml.j2
+    dest: /opt/odoo-cloud-infra/odoo/docker-compose.odoo.yaml
+
+- name: start compose file for odoo
+  command: docker compose -f /opt/odoo-cloud-infra/odoo/docker-compose.odoo.yaml up -d
+  args:
+    chdir: /opt/odoo-cloud-infra/odoo
+    
