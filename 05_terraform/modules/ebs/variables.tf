@@ -30,3 +30,10 @@ variable "instance_id" {
   type        = string
   
 }
+
+variable "stack_name" {
+  description = "The name of the stack"
+  type        = string
+  default     = "my-terraform-stack"
+  
+}

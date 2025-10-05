@@ -18,6 +18,6 @@ terraform {
 provider "aws" {
   # Configuration options
   region = local.region
-    profile = "devops-stephane"
+    profile = "stephane"
 }
  

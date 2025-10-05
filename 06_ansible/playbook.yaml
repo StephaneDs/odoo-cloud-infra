@@ -1,29 +1,33 @@
 - name: Deploy ic-webapp project
-  hosts: vm1
+  hosts: aws_vm
   become: true
-  
+  # vars:
+  #   network: "network_test_2"
 
-  pre_tasks:
+  # pre_tasks:
    
-    - name: check if external network exists
-      command: docker network inspect "{{ network }}"
-      register: network_check
-      ignore_errors: true
-      changed_when: false
+  #   - name: check if external network exists
+  #     command: docker network inspect "{{ network }}"
+  #     register: network_check
+  #     ignore_errors: true
+  #     changed_when: false
 
-    - name: Create external network if it does not exist
-      when: network_check.rc != 0
-      docker_network:
-        name: "{{ network }}"
-        driver: bridge
-        attachable: true
-        state: present
+  #   - name: Create external network if it does not exist
+  #     when: network_check.rc != 0
+  #     docker_network:
+  #       name: "{{ network }}"
+  #       driver: bridge
+  #       attachable: true
+  #       state: present
 
 
   roles:
-    - ic_webapp_role
-    - pgadmin_role
+    - docker_role
     - odoo_role
+    - pgadmin_role
+    - ic_webapp_role
+    
+    
 
   post_tasks:
     - name: Deployment completed successfully!

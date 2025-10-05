@@ -24,4 +24,4 @@ odoo_db_volume: odoo-db-data
 odoo_db_pgdata: /var/lib/postgresql/data/pgdata
 
 
-network: ic-network 
+network: ic-webapp-network

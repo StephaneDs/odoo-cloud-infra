@@ -1,0 +1,6 @@
+all:
+  children:
+    aws_vm:
+      hosts:
+        ec2_vm1:
+       

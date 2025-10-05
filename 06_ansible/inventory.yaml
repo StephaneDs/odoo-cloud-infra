@@ -1,6 +1,6 @@
 all:
   children:
-    odoo-cloud-infra:
+    vagrant_vm:
       hosts:
         vm1:
           

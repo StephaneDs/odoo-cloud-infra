@@ -1,0 +1,33 @@
+
+# tasks file for k3s_deploy
+- name: Install k3s
+  shell: |
+    curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --tls-san {{ ansible_host }}" sh -
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: Ensure k3s service is started and enabled
+  service:
+    name: k3s
+    state: started
+    enabled: true
+
+- name: Set kubeconfig file permissions for reading
+  become: true
+  file:
+    path: /etc/rancher/k3s/k3s.yaml
+    mode: '0644'
+
+- name: Fetch kubeconfig
+  fetch:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /Users/stephane/.config/kubeconfigs/{{ ansible_host }}.yaml
+    flat: yes
+
+
+- name: replace server IP in kubeconfig
+  ansible.builtin.replace:
+    path: /Users/stephane/.config/kubeconfigs/{{ ansible_host }}.yaml
+    regexp: 'server: https://[0-9.]+:6443'
+    replace: 'server: https://{{ ansible_host }}:6443'
+  delegate_to: localhost

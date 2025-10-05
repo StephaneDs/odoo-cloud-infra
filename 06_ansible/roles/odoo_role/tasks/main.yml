@@ -4,8 +4,8 @@
     path: /opt/odoo-cloud-infra/odoo
     state: directory
     mode: '0755'
-    owner: vagrant
-    group: vagrant
+    owner: ubuntu
+    group: ubuntu
 
 
 - name: generate odoo docker-compose file

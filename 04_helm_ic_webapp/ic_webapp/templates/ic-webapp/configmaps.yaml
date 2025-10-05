@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ic-webapp-cm
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.ic_webapp_label.app }}
+    env: {{ .Values.ic_webapp_label.env }}
+    
+data:
+  ODOO_URL: "http://localhost:8069/"
+  PGADMIN_URL: "http://localhost:5050/"

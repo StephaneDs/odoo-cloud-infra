@@ -1,0 +1,14 @@
+- name: Deploy k3s_deploy ic-webapp project
+  hosts: aws_vm
+  become: false
+
+  pre_tasks:
+    - name: Create kubeconfigs directory on control machine
+      delegate_to: localhost
+      file:
+        path: /Users/stephane/.config/kubeconfigs
+        state: directory
+        mode: '0755'
+
+  roles:
+    - k3s_deploy

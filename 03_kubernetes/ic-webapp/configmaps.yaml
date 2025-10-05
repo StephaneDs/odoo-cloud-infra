@@ -4,7 +4,7 @@ metadata:
   name: ic-webapp-cm
   namespace: ic-group
   labels:
-    app: ic-webapp
+    env: prod
 data:
   ODOO_URL: "http://localhost:8069/"
   PGADMIN_URL: "http://localhost:5050/"

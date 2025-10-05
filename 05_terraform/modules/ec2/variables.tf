@@ -13,10 +13,6 @@ variable "availability_zone" {
   type        = string
 }
 
-variable "security_groups_id" {
-  description = "The security groups to associate with the instance"
-  type        = list(string)
-}
 
 variable "key_name" {
   description = "The name of the key pair to use for SSH access"
@@ -36,4 +32,21 @@ variable "environment" {
 variable "project_name" {
   description = "The name of the project"
   type        = string
+}
+
+variable "vpc_security_group_ids" {
+  description = "The VPC security group IDs to associate with the instance"
+  type        = list(string)
+}
+
+variable "stack_name" {
+  description = "The name of the stack"
+  type        = string
+  default     = "my-terraform-stack"
+}
+
+variable "script_name" {
+  description = "The name of the script to run on the instance (K3s or Docker)"
+  type        = string
+  default     = "my-terraform-stack"
 }

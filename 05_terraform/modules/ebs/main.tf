@@ -6,12 +6,12 @@ resource "aws_ebs_volume" "this" {
     Name = var.instance_name
     Environnement = var.environment
     Project = var.project_name
+    Stack = var.stack_name
   }
 }
 
 resource "aws_volume_attachment" "this" {
   device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.example.id
+  volume_id   = aws_ebs_volume.this.id
   instance_id = var.instance_id
-
 }

@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+  namespace: ic-group
+spec:
+  rules:
+     - http:
+        paths:
+          - path: /db
+            pathType: Prefix
+            backend:
+              service:
+                name: odoo-db-svc
+                port:
+                  number: 5432
+     - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pgadmin-svc
+                port:
+                  number: 5050
+     - http:
+        paths:
+          - path: /web
+            pathType: Prefix
+            backend:
+              service:
+                name: odoo-web-svc
+                port:
+                  number: 8069

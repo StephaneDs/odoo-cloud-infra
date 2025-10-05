@@ -10,6 +10,7 @@ resource "aws_security_group" "this" {
         to_port     = ingress.value
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
       }
     }
 

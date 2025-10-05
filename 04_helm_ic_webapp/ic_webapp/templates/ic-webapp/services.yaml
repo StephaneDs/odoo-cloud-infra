@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ic-webapp-svc
+  name: ic-webapp-svc
+  namespace: ic-group
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ic-webapp-deploy
+  type: LoadBalancer
+status:
+  loadBalancer: {}

@@ -5,8 +5,8 @@
     path: /opt/odoo-cloud-infra/pgadmin
     state: directory
     mode: '0755'
-    owner: vagrant
-    group: vagrant
+    owner: ubuntu
+    group: ubuntu
 
 - name: generate pgadmin docker-compose file
   template:
